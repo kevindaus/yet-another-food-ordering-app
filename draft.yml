@@ -6,68 +6,83 @@ models:
     service_options: json
     location_longitude: double nullable
     location_latitude: double nullable
-    address: string:256
-    owner_id: id:user
+    address_1: string:256 nullable
+    address_2: string:256 nullable
+    town: string:256 nullable
+    city: string:256 nullable
+    user_id: id:user
     relationships:
-      hasMany: Menu
+      hasMany: Menu , RestaurantBusinessHours
   RestaurantBusinessHours:
     week_name: string:256
     open: time
     close: time
+    restaurant_id: id:restaurant
   Menu:
     name: string:256
     description: longtext nullable
+    restaurant_id: id:restaurant
     relationships:
-      hasMany: MenuItem
-    restaurant_id: id:Restaurant
-  MenuItem:
-    relationships:
-      belongsToMany: Menu,Food
+      hasMany: Food
+      belongsTo: Restaurant
   Food:
     name: string:256
     description: longtext nullable
     price: integer
     relationships:
       hasMany: FoodCategory
+      belongsToMany: Menu
   FoodCategory:
     name: string:256
     slug: string:256
-    relationships:
-        belongsToMany: Food
+    food_id: id:food
   FoodReview:
     content: longtext nullable
     rating: integer
-    relationships:
-      belongsToMany: Food,Customer
+    food_id: id:food
+    customer_id: id:customer
   Customer:
     first_name: string:256 nullable
     last_name: string:256 nullable
     mobile_number: string:256 nullable
-    location_longitude: double nullable
-    location_latitude: double nullable
+    address_1: string:256 nullable
+    address_2: string:256 nullable
+    postcode: string:256 nullable
+    town: string:256 nullable
+    province: string:256 nullable
+    address_location_longitude: double nullable
+    address_location_latitude: double nullable
     relationships:
       hasMany: Order,FoodReview
   Order:
     tracking_number: uuid
     order_time: datetime
     total: double
+    customer_id: id:customer
     relationships:
-      belongsTo: Customer
-      hasMany: Delivery,Payment
+      hasOne: Delivery,Payment
   OrderItem:
     quantity: double
-    relationships:
-      belongsTo: Order,Food
+    order_id: id:order
+    food_id: id:food
   Payment:
     total_amount_payable: double
     amount_paid: double
     change: double
-    relationships:
-      belongsTo: Order,Customer
+    customer_id: id:customer
+    order_id: id:order
+    timestamps
   Rider:
+    first_name: string:256
+    last_name: string:256
+    mobile_number: string:256
+    status: string:256
+    timestamps
     relationships:
       hasMany: Delivery
   Delivery:
-    relationships:
-      belongsTo: Order,Rider
+    delivery_status: string:256
+    order_id: id:order
+    rider_id: id:delivery
+    timestamps
 seeders: Delivery,Rider,Payment,OrderItem,Order,Customer,FoodCategory,Food,MenuItem,Menu,RestaurantBusinessHours,Restaurant
