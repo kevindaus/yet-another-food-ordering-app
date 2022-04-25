@@ -1,0 +1,73 @@
+models:
+  Restaurant:
+    name: string:256
+    description: longtext nullable
+    date_opened: date nullable timestamp
+    service_options: json
+    location_longitude: double nullable
+    location_latitude: double nullable
+    address: string:256
+    owner_id: id:user
+    relationships:
+      hasMany: Menu
+  RestaurantBusinessHours:
+    week_name: string:256
+    open: time
+    close: time
+  Menu:
+    name: string:256
+    description: longtext nullable
+    relationships:
+      hasMany: MenuItem
+    restaurant_id: id:Restaurant
+  MenuItem:
+    relationships:
+      belongsToMany: Menu,Food
+  Food:
+    name: string:256
+    description: longtext nullable
+    price: integer
+    relationships:
+      hasMany: FoodCategory
+  FoodCategory:
+    name: string:256
+    slug: string:256
+    relationships:
+        belongsToMany: Food
+  FoodReview:
+    content: longtext nullable
+    rating: integer
+    relationships:
+      belongsToMany: Food,Customer
+  Customer:
+    first_name: string:256 nullable
+    last_name: string:256 nullable
+    mobile_number: string:256 nullable
+    location_longitude: double nullable
+    location_latitude: double nullable
+    relationships:
+      hasMany: Order,FoodReview
+  Order:
+    tracking_number: uuid
+    order_time: datetime
+    total: double
+    relationships:
+      belongsTo: Customer
+      hasMany: Delivery,Payment
+  OrderItem:
+    quantity: double
+    relationships:
+      belongsTo: Order,Food
+  Payment:
+    total_amount_payable: double
+    amount_paid: double
+    change: double
+    relationships:
+      belongsTo: Order,Customer
+  Rider:
+    relationships:
+      hasMany: Delivery
+  Delivery:
+    relationships:
+      belongsTo: Order,Rider
+seeders: Delivery,Rider,Payment,OrderItem,Order,Customer,FoodCategory,Food,MenuItem,Menu,RestaurantBusinessHours,Restaurant
