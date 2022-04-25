@@ -38,6 +38,6 @@ class Delivery extends Model
 
     public function rider()
     {
-        return $this->belongsTo(Delivery::class);
+        return $this->belongsTo(Rider::class);
     }
 }

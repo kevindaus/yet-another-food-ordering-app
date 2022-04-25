@@ -11,19 +11,19 @@ created:
     - database/factories/PaymentFactory.php
     - database/factories/RiderFactory.php
     - database/factories/DeliveryFactory.php
-    - database/migrations/2022_04_25_144019_create_restaurants_table.php
-    - database/migrations/2022_04_25_144020_create_restaurant_business_hours_table.php
-    - database/migrations/2022_04_25_144021_create_menus_table.php
-    - database/migrations/2022_04_25_144022_create_food_table.php
-    - database/migrations/2022_04_25_144023_create_food_categories_table.php
-    - database/migrations/2022_04_25_144024_create_food_reviews_table.php
-    - database/migrations/2022_04_25_144025_create_customers_table.php
-    - database/migrations/2022_04_25_144026_create_orders_table.php
-    - database/migrations/2022_04_25_144027_create_order_items_table.php
-    - database/migrations/2022_04_25_144028_create_payments_table.php
-    - database/migrations/2022_04_25_144029_create_riders_table.php
-    - database/migrations/2022_04_25_144030_create_deliveries_table.php
-    - database/migrations/2022_04_25_144031_create_food_menu_table.php
+    - database/migrations/2022_04_25_152143_create_restaurants_table.php
+    - database/migrations/2022_04_25_152144_create_restaurant_business_hours_table.php
+    - database/migrations/2022_04_25_152145_create_menus_table.php
+    - database/migrations/2022_04_25_152146_create_food_table.php
+    - database/migrations/2022_04_25_152147_create_food_categories_table.php
+    - database/migrations/2022_04_25_152148_create_food_reviews_table.php
+    - database/migrations/2022_04_25_152149_create_customers_table.php
+    - database/migrations/2022_04_25_152150_create_orders_table.php
+    - database/migrations/2022_04_25_152151_create_order_items_table.php
+    - database/migrations/2022_04_25_152152_create_payments_table.php
+    - database/migrations/2022_04_25_152153_create_riders_table.php
+    - database/migrations/2022_04_25_152154_create_deliveries_table.php
+    - database/migrations/2022_04_25_152155_create_food_menu_table.php
     - app/Models/Restaurant.php
     - app/Models/RestaurantBusinessHours.php
     - app/Models/Menu.php
@@ -52,13 +52,13 @@ models:
     User: { name: string, email: string, mobile_number: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
     Restaurant: { name: 'string:256', description: 'longtext nullable', date_opened: 'date nullable timestamp', service_options: json, location_longitude: 'double nullable', location_latitude: 'double nullable', address_1: 'string:256 nullable', address_2: 'string:256 nullable', town: 'string:256 nullable', city: 'string:256 nullable', user_id: 'id:user', relationships: { hasMany: 'Menu , RestaurantBusinessHours' } }
     RestaurantBusinessHours: { week_name: 'string:256', open: time, close: time, restaurant_id: 'id:restaurant' }
-    Menu: { name: 'string:256', description: 'longtext nullable', restaurant_id: 'id:restaurant', relationships: { hasMany: Food, belongsTo: Restaurant } }
+    Menu: { name: 'string:256', description: 'longtext nullable', restaurant_id: 'id:restaurant', relationships: { hasMany: Food } }
     Food: { name: 'string:256', description: 'longtext nullable', price: integer, relationships: { hasMany: FoodCategory, belongsToMany: Menu } }
     FoodCategory: { name: 'string:256', slug: 'string:256', food_id: 'id:food' }
     FoodReview: { content: 'longtext nullable', rating: integer, food_id: 'id:food', customer_id: 'id:customer' }
     Customer: { first_name: 'string:256 nullable', last_name: 'string:256 nullable', mobile_number: 'string:256 nullable', address_1: 'string:256 nullable', address_2: 'string:256 nullable', postcode: 'string:256 nullable', town: 'string:256 nullable', province: 'string:256 nullable', address_location_longitude: 'double nullable', address_location_latitude: 'double nullable', relationships: { hasMany: 'Order,FoodReview' } }
-    Order: { tracking_number: uuid, order_time: datetime, total: double, customer_id: 'id:customer', relationships: { hasOne: 'Delivery,Payment' } }
+    Order: { tracking_number: uuid, order_time: datetime, total: double, customer_id: 'id:customer', relationships: { hasOne: 'Delivery,Payment', hasMany: OrderItem } }
     OrderItem: { quantity: double, order_id: 'id:order', food_id: 'id:food' }
     Payment: { total_amount_payable: double, amount_paid: double, change: double, customer_id: 'id:customer', order_id: 'id:order', timestamps: timestamps }
     Rider: { first_name: 'string:256', last_name: 'string:256', mobile_number: 'string:256', status: 'string:256', timestamps: timestamps, relationships: { hasMany: Delivery } }
-    Delivery: { delivery_status: 'string:256', order_id: 'id:order', rider_id: 'id:delivery', timestamps: timestamps }
+    Delivery: { delivery_status: 'string:256', order_id: 'id:order', rider_id: 'id:rider', timestamps: timestamps }

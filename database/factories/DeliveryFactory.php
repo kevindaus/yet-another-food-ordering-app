@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Delivery;
 use App\Models\Order;
+use App\Models\Rider;
 
 class DeliveryFactory extends Factory
 {
@@ -26,7 +27,7 @@ class DeliveryFactory extends Factory
         return [
             'delivery_status' => $this->faker->regexify('[A-Za-z0-9]{256}'),
             'order_id' => Order::factory(),
-            'rider_id' => Delivery::factory(),
+            'rider_id' => Rider::factory(),
         ];
     }
 }

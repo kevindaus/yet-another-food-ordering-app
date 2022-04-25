@@ -24,7 +24,6 @@ models:
     restaurant_id: id:restaurant
     relationships:
       hasMany: Food
-      belongsTo: Restaurant
   Food:
     name: string:256
     description: longtext nullable
@@ -61,6 +60,7 @@ models:
     customer_id: id:customer
     relationships:
       hasOne: Delivery,Payment
+      hasMany: OrderItem
   OrderItem:
     quantity: double
     order_id: id:order
@@ -83,6 +83,6 @@ models:
   Delivery:
     delivery_status: string:256
     order_id: id:order
-    rider_id: id:delivery
+    rider_id: id:rider
     timestamps
 seeders: Delivery,Rider,Payment,OrderItem,Order,Customer,FoodCategory,Food,MenuItem,Menu,RestaurantBusinessHours,Restaurant
