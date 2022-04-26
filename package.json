@@ -17,7 +17,11 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "clear-all": "php artisan optimize:clear",
+        "seed-default-role": "php artisan db:seed --class=DefaultRoleSeeder",
+        "seed-default-restaurant-owner": "php artisan db:seed --class=RestaurantOwnerSeeder",
+        "seed-default-admin": "php artisan db:seed --class=DefaultAdminSeeder"
     },
     "devDependencies": {
         "axios": "^0.25",

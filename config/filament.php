@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'path' => env('FILAMENT_PATH', 'admin'),
+    'path' => env('FILAMENT_PATH', 'vendor'),
 
 
     /*
@@ -90,7 +90,7 @@ return [
     'auth' => [
         'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
         'pages' => [
-            'login' => \Filament\Http\Livewire\Auth\Login::class,
+            'login' => \App\Http\Livewire\CustomLogin::class,
         ],
     ],
 
@@ -194,7 +194,7 @@ return [
             'have_inline_labels' => false,
         ],
         'footer' => [
-            'should_show_logo' => true,
+            'should_show_logo' => false,
         ],
         'max_content_width' => null,
         'notifications' => [
