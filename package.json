@@ -19,6 +19,7 @@
         "prod": "npm run production",
         "production": "mix --production",
         "clear-all": "php artisan optimize:clear",
+        "seed-default-customer": "php artisan db:seed --class=CustomerSeeder",
         "seed-default-role": "php artisan db:seed --class=DefaultRoleSeeder",
         "seed-default-restaurant-owner": "php artisan db:seed --class=RestaurantOwnerSeeder",
         "seed-default-admin": "php artisan db:seed --class=DefaultAdminSeeder"

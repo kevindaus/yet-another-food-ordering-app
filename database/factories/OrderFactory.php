@@ -25,7 +25,9 @@ class OrderFactory extends Factory
     {
         return [
             'tracking_number' => $this->faker->uuid,
+            'status' => Order::STATUS_NEW,
             'order_time' => $this->faker->dateTime(),
+            'notes' => $this->faker->text(),
             'total' => $this->faker->randomFloat(0, 0, 9999999999.),
             'customer_id' => Customer::factory(),
         ];
