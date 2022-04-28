@@ -16,6 +16,7 @@ class OrderItem extends Model
      */
     protected $fillable = [
         'quantity',
+        'unit_price',
         'order_id',
         'food_id',
     ];
@@ -28,6 +29,7 @@ class OrderItem extends Model
     protected $casts = [
         'id' => 'integer',
         'quantity' => 'double',
+        'unit_price' => 'double',
         'order_id' => 'integer',
         'food_id' => 'integer',
     ];

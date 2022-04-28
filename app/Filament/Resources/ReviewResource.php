@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReviewResource\Pages;
 use App\Filament\Resources\ReviewResource\RelationManagers;
+use App\Models\FoodReview;
 use App\Models\Review;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -13,7 +14,7 @@ use Filament\Tables;
 
 class ReviewResource extends Resource
 {
-    protected static ?string $model = Review::class;
+    protected static ?string $model = FoodReview::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
@@ -47,8 +48,9 @@ class ReviewResource extends Resource
     {
         return [
             'index' => Pages\ListReviews::route('/'),
-            'create' => Pages\CreateReview::route('/create'),
-            'edit' => Pages\EditReview::route('/{record}/edit'),
+//            'create' => Pages\CreateReview::route('/create'),
+//            'edit' => Pages\EditReview::route('/{record}/edit'),
+            'view' => Pages\EditReview::route('/{record}/view'),
         ];
     }
 }

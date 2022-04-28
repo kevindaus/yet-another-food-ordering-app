@@ -26,6 +26,7 @@ class OrderItemFactory extends Factory
     {
         return [
             'quantity' => $this->faker->randomFloat(0, 0, 9999999999.),
+            'unit_price' => $this->faker->randomFloat(0, 0, 9999999999.),
             'order_id' => Order::factory(),
             'food_id' => Food::factory(),
         ];
