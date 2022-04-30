@@ -99,6 +99,14 @@ class OrderResource extends Resource
                     ->label("Customer")
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('total')
+                    ->label("Total")
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('status')
+                    ->label("Status")
+                    ->searchable()
+                    ->sortable(),
 
             ])
             ->filters([
@@ -109,7 +117,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\OrderItemsRelationManager::class
         ];
     }
 
@@ -118,7 +126,7 @@ class OrderResource extends Resource
     {
         return [
             'index' => Pages\ListOrders::route('/'),
-            'view' => Pages\ViewOrder::route("/{record}/view"),
+//            'view' => Pages\ViewOrder::route("/{record}/view"),
             'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
 
