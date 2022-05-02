@@ -81,8 +81,6 @@ class OrderResource extends Resource
                                 ->label('Ordered At')
                                 ->content(fn(?Order $record): string => $record ? $record->order_time->diffForHumans() : '-'),
                         ])->columns(1),
-
-
                     ])->columnSpan(1),
             ])->columns(3);
     }

@@ -79,7 +79,7 @@ class FoodResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\FoodReviewsRelationManager::class
         ];
     }
 

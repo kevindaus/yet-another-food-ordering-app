@@ -38,4 +38,9 @@ class Food extends Model
     {
         return $this->belongsToMany(Menu::class);
     }
+
+    public function foodReviews()
+    {
+        return $this->hasMany(FoodReview::class);
+    }
 }

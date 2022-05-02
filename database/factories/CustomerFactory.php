@@ -25,12 +25,12 @@ class CustomerFactory extends Factory
         return [
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'mobile_number' => $this->faker->regexify('[A-Za-z0-9]{256}'),
-            'address_1' => $this->faker->regexify('[A-Za-z0-9]{256}'),
-            'address_2' => $this->faker->regexify('[A-Za-z0-9]{256}'),
+            'mobile_number' => $this->faker->regexify('[0-9]{11}'),
+            'address_1' => $this->faker->address,
+            'address_2' => $this->faker->address,
             'postcode' => $this->faker->postcode,
-            'town' => $this->faker->regexify('[A-Za-z0-9]{256}'),
-            'province' => $this->faker->regexify('[A-Za-z0-9]{256}'),
+            'town' => $this->faker->regexify('[A-Za-z0-9]{8}'),
+            'province' => $this->faker->regexify('[A-Za-z0-9]{10}'),
             'address_location_longitude' => $this->faker->randomFloat(0, 0, 9999999999.),
             'address_location_latitude' => $this->faker->randomFloat(0, 0, 9999999999.),
         ];
